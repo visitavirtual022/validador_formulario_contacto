@@ -20,6 +20,11 @@ function validar(evento) {
     mostrarAlerta(`El campo ${evento.target.name} es obligatorio`,evento.target.parentElement );
     return;
   } 
+   if(evento.target.id === 'email' && !validarEmail(evento.target.value)) {
+    mostrarAlerta(`El email ${evento.target.value} no es valido`,evento.target.parentElement);
+    return;
+   };
+
     limpiarAlerta(evento.target.parentElement);
   }
 ;
@@ -42,6 +47,11 @@ function limpiarAlerta(referencia) {
   if (alerta){
   alerta.remove();
   }
+}
+function validarEmail(email) {
+  const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/  // --> expresion regular
+  const resultado = regex.test(email); // --> metodo test para comprobar una expresion regular retorna true o false
+  return (resultado);
 }
 
 });
